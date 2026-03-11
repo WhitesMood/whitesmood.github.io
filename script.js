@@ -114,33 +114,128 @@ function showSection(sectionId) {
     });
 }
 
-// Modal functions for image enlargement
-function openModal(imgElement) {
-    console.log("🖼️ Opening modal for image");
+// ===== ENHANCED FULLSCREEN MODAL FUNCTIONS =====
+
+let currentImageIndex = 0;
+let portfolioImages = [];
+
+// Open fullscreen modal
+window.openFullscreen = function(imgElement) {
+    console.log("🖼️ Opening fullscreen view");
+    
+    // Get all portfolio images
+    portfolioImages = Array.from(document.querySelectorAll('.portfolio-image'));
+    currentImageIndex = portfolioImages.indexOf(imgElement);
+    
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     const captionText = document.getElementById('modalCaption');
+    const modalCounter = document.querySelector('.modal-counter');
     
-    modal.style.display = "block";
+    // Update modal content
+    modal.style.display = "flex";
+    modal.style.alignItems = "center";
+    modal.style.justifyContent = "center";
     modalImg.src = imgElement.src;
     
-    // Find the caption from the parent portfolio item
+    // Find and display caption
     const portfolioItem = imgElement.closest('.portfolio-item');
     if (portfolioItem) {
         const title = portfolioItem.querySelector('h3').innerText;
-        captionText.innerHTML = title;
+        const description = portfolioItem.querySelector('p').innerText;
+        captionText.innerHTML = `<strong>${title}</strong><br><span style="font-size: 1rem; opacity: 0.7;">${description}</span>`;
     }
-}
+    
+    // Update counter
+    if (modalCounter) {
+        modalCounter.textContent = `${currentImageIndex + 1} / ${portfolioImages.length}`;
+    }
+    
+    // Prevent body scrolling
+    document.body.style.overflow = 'hidden';
+};
 
-function closeModal() {
-    console.log("❌ Closing modal");
+// Close modal
+window.closeFullscreen = function() {
+    console.log("❌ Closing fullscreen view");
     document.getElementById('imageModal').style.display = "none";
-}
+    document.body.style.overflow = 'auto'; // Restore scrolling
+};
 
-// Close modal when clicking outside the image
-window.onclick = function(event) {
-    const modal = document.getElementById('imageModal');
-    if (event.target == modal) {
-        closeModal();
+// Navigate to previous image
+window.prevImage = function() {
+    if (currentImageIndex > 0) {
+        currentImageIndex--;
+    } else {
+        currentImageIndex = portfolioImages.length - 1; // Loop to last
+    }
+    updateModalImage();
+};
+
+// Navigate to next image
+window.nextImage = function() {
+    if (currentImageIndex < portfolioImages.length - 1) {
+        currentImageIndex++;
+    } else {
+        currentImageIndex = 0; // Loop to first
+    }
+    updateModalImage();
+};
+
+// Update modal with current image
+function updateModalImage() {
+    const modalImg = document.getElementById('modalImage');
+    const captionText = document.getElementById('modalCaption');
+    const modalCounter = document.querySelector('.modal-counter');
+    
+    if (portfolioImages[currentImageIndex]) {
+        modalImg.src = portfolioImages[currentImageIndex].src;
+        
+        // Update caption
+        const portfolioItem = portfolioImages[currentImageIndex].closest('.portfolio-item');
+        if (portfolioItem) {
+            const title = portfolioItem.querySelector('h3').innerText;
+            const description = portfolioItem.querySelector('p').innerText;
+            captionText.innerHTML = `<strong>${title}</strong><br><span style="font-size: 1rem; opacity: 0.7;">${description}</span>`;
+        }
+        
+        // Update counter
+        if (modalCounter) {
+            modalCounter.textContent = `${currentImageIndex + 1} / ${portfolioImages.length}`;
+        }
     }
 }
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('imageModal');
+    if (modal.style.display === 'flex') {
+        if (e.key === 'ArrowLeft') {
+            prevImage();
+        } else if (e.key === 'ArrowRight') {
+            nextImage();
+        } else if (e.key === 'Escape') {
+            closeFullscreen();
+        }
+    }
+});
+
+// Filter functionality (optional)
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        // Update active button
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const filter = this.dataset.filter;
+        const items = document.querySelectorAll('.portfolio-item');
+        
+        items.forEach(item => {
+            if (filter === 'all' || item.dataset.category === filter) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
