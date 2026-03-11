@@ -1,36 +1,28 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("🚀 Language switcher initializing...");
+    console.log("🚀 Initializing website...");
     
-    // Get all language buttons and elements with language attributes
+    // ========== LANGUAGE SWITCHER ==========
+    console.log("Setting up language switcher...");
+    
     const langButtons = document.querySelectorAll('.lang-btn');
     const langElements = document.querySelectorAll('[data-en][data-ru]');
     
     console.log(`📊 Found ${langButtons.length} buttons and ${langElements.length} translatable elements`);
     
-    // Set default language (English)
-    let currentLang = 'en';
-    
     // Function to update content based on selected language
     function updateLanguage(lang) {
         console.log(`🔄 Switching to: ${lang}`);
         
-        langElements.forEach((element, index) => {
+        langElements.forEach(element => {
             const translation = element.getAttribute(`data-${lang}`);
             if (translation) {
-                // Store original content if not already stored
-                if (!element.hasAttribute('data-original')) {
-                    element.setAttribute('data-original', element.innerHTML);
-                }
-                
                 // Update the content
-                if (element.tagName === 'INPUT' || element.tagNAME === 'TEXTAREA') {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                     element.placeholder = translation;
                 } else {
-                    element.innerHTML = translation;
+                    element.textContent = translation;
                 }
-            } else {
-                console.warn(`⚠️ No translation found for ${lang} on element:`, element);
             }
         });
         
@@ -44,8 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Store language preference
         localStorage.setItem('preferredLanguage', lang);
-        currentLang = lang;
-        console.log(`✅ Language switched to ${lang}`);
     }
     
     // Add click event to language buttons
@@ -53,94 +43,142 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const lang = this.getAttribute('data-lang');
-            console.log(`👆 Button clicked: ${lang}`);
             updateLanguage(lang);
         });
     });
     
     // Check for saved language preference
     const savedLang = localStorage.getItem('preferredLanguage');
-    console.log(`💾 Saved language preference: ${savedLang}`);
-    
     if (savedLang && (savedLang === 'en' || savedLang === 'ru')) {
         updateLanguage(savedLang);
     } else {
-        // Optional: Auto-detect browser language
+        // Auto-detect browser language
         const browserLang = navigator.language || navigator.userLanguage;
-        console.log(`🌐 Browser language: ${browserLang}`);
         if (browserLang.startsWith('ru')) {
             updateLanguage('ru');
         } else {
-            updateLanguage('en'); // Default to English
+            updateLanguage('en');
         }
     }
     
-    console.log("✨ Language switcher ready!");
+    // ========== TAB NAVIGATION ==========
+    console.log("Setting up tab navigation...");
+    
+    // Get all navigation links
+    const navLinks = document.querySelectorAll('nav a');
+    
+    // Function to show a section
+    window.showSection = function(sectionId) {
+        console.log(`📱 Switching to section: ${sectionId}`);
+        
+        // Hide all sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // Show selected section
+        const selectedSection = document.getElementById(sectionId);
+        if (selectedSection) {
+            selectedSection.classList.add('active');
+        } else {
+            console.warn(`⚠️ Section not found: ${sectionId}`);
+        }
+        
+        // Update navigation active state
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Find and highlight the clicked nav link
+        const activeLink = document.querySelector(`[onclick="showSection('${sectionId}')"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+        
+        // Scroll to top smoothly
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+    
+    // Add click event listeners directly to nav links (backup method)
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Extract section ID from the onclick attribute or use href
+            let sectionId = this.getAttribute('data-section');
+            
+            // If no data-section, try to parse from onclick
+            if (!sectionId) {
+                const onclickAttr = this.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/showSection\('([^']+)'\)/);
+                    if (match) {
+                        sectionId = match[1];
+                    }
+                }
+            }
+            
+            // Default mapping if nothing else works
+            if (!sectionId) {
+                const text = this.textContent.toLowerCase();
+                if (text.includes('home')) sectionId = 'home';
+                else if (text.includes('portfolio')) sectionId = 'portfolio';
+                else if (text.includes('about')) sectionId = 'about';
+                else if (text.includes('contact')) sectionId = 'contact';
+            }
+            
+            if (sectionId) {
+                window.showSection(sectionId);
+            }
+        });
+    });
+    
+    // ========== MODAL FUNCTIONS ==========
+    console.log("Setting up modal...");
+    
+    window.openModal = function(imgElement) {
+        console.log("🖼️ Opening modal");
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const captionText = document.getElementById('modalCaption');
+        
+        if (modal && modalImg) {
+            modal.style.display = "block";
+            modalImg.src = imgElement.src;
+            
+            // Find the caption from the parent portfolio item
+            const portfolioItem = imgElement.closest('.portfolio-item');
+            if (portfolioItem) {
+                const title = portfolioItem.querySelector('h3').innerText;
+                if (captionText) {
+                    captionText.innerHTML = title;
+                }
+            }
+        }
+    };
+    
+    window.closeModal = function() {
+        console.log("❌ Closing modal");
+        const modal = document.getElementById('imageModal');
+        if (modal) {
+            modal.style.display = "none";
+        }
+    };
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('imageModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    };
     
     // Activate home section by default
-    showSection('home');
+    console.log("Activating home section by default");
+    window.showSection('home');
+    
+    console.log("✨ Initialization complete!");
 });
-
-// Navigation function to switch between sections
-function showSection(sectionId) {
-    console.log(`📱 Switching to section: ${sectionId}`);
-    
-    // Hide all sections
-    document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    
-    // Show selected section
-    const selectedSection = document.getElementById(sectionId);
-    if (selectedSection) {
-        selectedSection.classList.add('active');
-    }
-    
-    // Update navigation active state
-    document.querySelectorAll('nav a').forEach(link => {
-        link.classList.remove('active');
-    });
-    
-    // Find and highlight the clicked nav link
-    const activeLink = document.querySelector(`[onclick="showSection('${sectionId}')"]`);
-    if (activeLink) {
-        activeLink.classList.add('active');
-    }
-    
-    // Scroll to top smoothly
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
-// Modal functions for image enlargement
-function openModal(imgElement) {
-    console.log("🖼️ Opening modal for image");
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    const captionText = document.getElementById('modalCaption');
-    
-    modal.style.display = "block";
-    modalImg.src = imgElement.src;
-    
-    // Find the caption from the parent portfolio item
-    const portfolioItem = imgElement.closest('.portfolio-item');
-    if (portfolioItem) {
-        const title = portfolioItem.querySelector('h3').innerText;
-        captionText.innerHTML = title;
-    }
-}
-
-function closeModal() {
-    console.log("❌ Closing modal");
-    document.getElementById('imageModal').style.display = "none";
-}
-
-// Close modal when clicking outside the image
-window.onclick = function(event) {
-    const modal = document.getElementById('imageModal');
-    if (event.target == modal) {
-        closeModal();
-    }
-}
