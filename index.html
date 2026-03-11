@@ -66,184 +66,118 @@
             </article>
         </section>
 
-       <!-- PORTFOLIO SECTION - FULLSCREEN DESIGN -->
-<section id="portfolio" class="content-section">
-    <div class="portfolio-header">
-        <h2 data-en="Level Design Portfolio" data-ru="Портфолио уровней">Level Design Portfolio</h2>
-        <p data-en="Click on any screenshot to view in fullscreen. Showcasing my best level design work." 
-           data-ru="Нажмите на любой скриншот для просмотра на весь экран. Мои лучшие работы по дизайну уровней.">
-            Click on any screenshot to view in fullscreen. Showcasing my best level design work.
-        </p>
-    </div>
+        <!-- PORTFOLIO SECTION (NEW) -->
+        <section id="portfolio" class="content-section">
+            <h2 class="section-title" data-en="Level Design Portfolio" data-ru="Портфолио уровней">Level Design Portfolio</h2>
+            <p class="section-description" data-en="Here are some examples of my level design work. Click on any image to enlarge it." 
+               data-ru="Здесь представлены примеры моих работ по дизайну уровней. Нажмите на любое изображение, чтобы увеличить его.">
+                Here are some examples of my level design work. Click on any image to enlarge it.
+            </p>
+            
+            <div class="portfolio-grid">
+                <!-- Cat Image 1 - Cyberpunk Cat -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image-container">
+                        <img src="images/your-level-1.png" alt="Woods_1" class="portfolio-image" onclick="openModal(this)">
+                        <div class="image-overlay">
+                            <span data-en="Click to enlarge" data-ru="Нажмите для увеличения">Click to enlarge</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-caption">
+                        <h3 data-en="Industrial Zone" data-ru="Промышленная зона">Industrial Zone</h3>
+                        <p data-en="A gritty factory level with multiple vertical layers" 
+                           data-ru="Мрачный заводской уровень с несколькими вертикальными уровнями">
+                            A gritty factory level with multiple vertical layers
+                        </p>
+                    </div>
+                </div>
 
-    <!-- Optional Filter Buttons -->
-    <div class="portfolio-filters">
-        <button class="filter-btn active" data-filter="all" data-en="All" data-ru="Все">All</button>
-        <button class="filter-btn" data-filter="industrial" data-en="Industrial" data-ru="Индустриальные">Industrial</button>
-        <button class="filter-btn" data-filter="fantasy" data-en="Fantasy" data-ru="Фэнтези">Fantasy</button>
-        <button class="filter-btn" data-filter="sci-fi" data-en="Sci-Fi" data-ru="Фантастика">Sci-Fi</button>
-        <button class="filter-btn" data-filter="horror" data-en="Horror" data-ru="Хоррор">Horror</button>
-    </div>
+                <!-- Cat Image 2 - Siamese Cat -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image-container">
+                        <img src="https://cataas.com/cat/says/Level%202?width=400&height=300" alt="Siamese cat with text" class="portfolio-image" onclick="openModal(this)">
+                        <div class="image-overlay">
+                            <span data-en="Click to enlarge" data-ru="Нажмите для увеличения">Click to enlarge</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-caption">
+                        <h3 data-en="Ancient Temple" data-ru="Древний храм">Ancient Temple</h3>
+                        <p data-en="Ruins with hidden passages and traps" 
+                           data-ru="Руины с скрытыми проходами и ловушками">
+                            Ruins with hidden passages and traps
+                        </p>
+                    </div>
+                </div>
 
-    <!-- Masonry Grid for Images -->
-    <div class="portfolio-masonry" id="portfolioMasonry">
-        <!-- Industrial Zone - Tall Image -->
-        <div class="portfolio-item" data-category="industrial" style="--height: 450">
-            <div class="portfolio-image-container">
-                <img src="images/industrial-zone.jpg" 
-                     alt="Industrial Zone Level Design" 
-                     class="portfolio-image" 
-                     onclick="openFullscreen(this)"
-                     loading="lazy"
-                     onerror="this.src='https://via.placeholder.com/800x1000/667eea/ffffff?text=Industrial+Zone'">
-                <div class="image-overlay">
-                    <span data-en="View Fullscreen" data-ru="На весь экран">View Fullscreen</span>
+                <!-- Cat Image 3 - Orange Cat -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image-container">
+                        <img src="https://cataas.com/cat?filter=sepia&width=400&height=300" alt="Orange cat in sepia" class="portfolio-image" onclick="openModal(this)">
+                        <div class="image-overlay">
+                            <span data-en="Click to enlarge" data-ru="Нажмите для увеличения">Click to enlarge</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-caption">
+                        <h3 data-en="Space Station" data-ru="Космическая станция">Space Station</h3>
+                        <p data-en="Zero-gravity combat arena with destructible elements" 
+                           data-ru="Арена для боя в невесомости с разрушаемыми элементами">
+                            Zero-gravity combat arena with destructible elements
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="portfolio-caption">
-                <h3 data-en="Industrial Zone" data-ru="Промышленная зона">Industrial Zone</h3>
-                <p data-en="A gritty factory level with multiple vertical layers and dynamic lighting" 
-                   data-ru="Мрачный заводской уровень с несколькими вертикальными уровнями и динамическим освещением">
-                    A gritty factory level with multiple vertical layers and dynamic lighting
-                </p>
-                <div class="portfolio-tags">
-                    <span class="portfolio-tag" data-en="Industrial" data-ru="Индустриальный">Industrial</span>
-                    <span class="portfolio-tag" data-en="Multi-level" data-ru="Многоуровневый">Multi-level</span>
-                </div>
-            </div>
-        </div>
 
-        <!-- Ancient Temple - Wide Image -->
-        <div class="portfolio-item" data-category="fantasy" style="--height: 350">
-            <div class="portfolio-image-container">
-                <img src="images/ancient-temple.jpg" 
-                     alt="Ancient Temple Level Design" 
-                     class="portfolio-image" 
-                     onclick="openFullscreen(this)"
-                     loading="lazy"
-                     onerror="this.src='https://via.placeholder.com/1000/764ba2/ffffff?text=Ancient+Temple'">
-                <div class="image-overlay">
-                    <span data-en="View Fullscreen" data-ru="На весь экран">View Fullscreen</span>
+                <!-- Cat Image 4 - Funny Cat -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image-container">
+                        <img src="https://cataas.com/cat?filter=:filter&width=400&height=300" alt="Funny cat face" class="portfolio-image" onclick="openModal(this)">
+                        <div class="image-overlay">
+                            <span data-en="Click to enlarge" data-ru="Нажмите для увеличения">Click to enlarge</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-caption">
+                        <h3 data-en="Underground Bunker" data-ru="Подземный бункер">Underground Bunker</h3>
+                        <p data-en="Claustrophobic tunnels with strategic chokepoints" 
+                           data-ru="Тесные туннели с стратегическими узлами">
+                            Claustrophobic tunnels with strategic chokepoints
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="portfolio-caption">
-                <h3 data-en="Ancient Temple" data-ru="Древний храм">Ancient Temple</h3>
-                <p data-en="Ruins with hidden passages, traps, and puzzle elements" 
-                   data-ru="Руины с скрытыми проходами, ловушками и элементами головоломок">
-                    Ruins with hidden passages, traps, and puzzle elements
-                </p>
-                <div class="portfolio-tags">
-                    <span class="portfolio-tag" data-en="Fantasy" data-ru="Фэнтези">Fantasy</span>
-                    <span class="portfolio-tag" data-en="Puzzles" data-ru="Головоломки">Puzzles</span>
-                </div>
-            </div>
-        </div>
 
-        <!-- Space Station - Square Image -->
-        <div class="portfolio-item" data-category="sci-fi" style="--height: 400">
-            <div class="portfolio-image-container">
-                <img src="images/space-station.jpg" 
-                     alt="Space Station Level Design" 
-                     class="portfolio-image" 
-                     onclick="openFullscreen(this)"
-                     loading="lazy"
-                     onerror="this.src='https://via.placeholder.com/800/667eea/ffffff?text=Space+Station'">
-                <div class="image-overlay">
-                    <span data-en="View Fullscreen" data-ru="На весь экран">View Fullscreen</span>
+                <!-- Cat Image 5 - Cool Cat -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image-container">
+                        <img src="https://cataas.com/cat?filter=custom&width=400&height=300" alt="Cool cat with sunglasses" class="portfolio-image" onclick="openModal(this)">
+                        <div class="image-overlay">
+                            <span data-en="Click to enlarge" data-ru="Нажмите для увеличения">Click to enlarge</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-caption">
+                        <h3 data-en="Floating Islands" data-ru="Парящие острова">Floating Islands</h3>
+                        <p data-en="Sky-high platforming challenge with wind mechanics" 
+                           data-ru="Высокое платформенное испытание с ветровой механикой">
+                            Sky-high platforming challenge with wind mechanics
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="portfolio-caption">
-                <h3 data-en="Space Station" data-ru="Космическая станция">Space Station</h3>
-                <p data-en="Zero-gravity combat arena with destructible elements and environmental hazards" 
-                   data-ru="Арена для боя в невесомости с разрушаемыми элементами и экологическими опасностями">
-                    Zero-gravity combat arena with destructible elements and environmental hazards
-                </p>
-                <div class="portfolio-tags">
-                    <span class="portfolio-tag" data-en="Sci-Fi" data-ru="Фантастика">Sci-Fi</span>
-                    <span class="portfolio-tag" data-en="Zero-G" data-ru="Невесомость">Zero-G</span>
-                </div>
-            </div>
-        </div>
 
-        <!-- Underground Bunker - Vertical Image -->
-        <div class="portfolio-item" data-category="industrial" style="--height: 500">
-            <div class="portfolio-image-container">
-                <img src="images/underground-bunker.jpg" 
-                     alt="Underground Bunker Level Design" 
-                     class="portfolio-image" 
-                     onclick="openFullscreen(this)"
-                     loading="lazy"
-                     onerror="this.src='https://via.placeholder.com/700x1000/764ba2/ffffff?text=Underground+Bunker'">
-                <div class="image-overlay">
-                    <span data-en="View Fullscreen" data-ru="На весь экран">View Fullscreen</span>
+                <!-- Cat Image 6 - Sleeping Cat -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image-container">
+                        <img src="https://cataas.com/cat?filter=pixel&width=400&height=300" alt="Sleeping cat pixel art" class="portfolio-image" onclick="openModal(this)">
+                        <div class="image-overlay">
+                            <span data-en="Click to enlarge" data-ru="Нажмите для увеличения">Click to enlarge</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-caption">
+                        <h3 data-en="Abandoned Asylum" data-ru="Заброшенная психиатрическая больница">Abandoned Asylum</h3>
+                        <p data-en="Horror-themed level with jump scares and puzzles" 
+                           data-ru="Уровень в жанре хоррор с скримерами и головоломками">
+                            Horror-themed level with jump scares and puzzles
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="portfolio-caption">
-                <h3 data-en="Underground Bunker" data-ru="Подземный бункер">Underground Bunker</h3>
-                <p data-en="Claustrophobic tunnels with strategic chokepoints and stealth opportunities" 
-                   data-ru="Тесные туннели с стратегическими узлами и возможностями для скрытного прохождения">
-                    Claustrophobic tunnels with strategic chokepoints and stealth opportunities
-                </p>
-                <div class="portfolio-tags">
-                    <span class="portfolio-tag" data-en="Military" data-ru="Военный">Military</span>
-                    <span class="portfolio-tag" data-en="Stealth" data-ru="Стелс">Stealth</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Floating Islands - Panoramic -->
-        <div class="portfolio-item" data-category="fantasy" style="--height: 300">
-            <div class="portfolio-image-container">
-                <img src="images/floating-islands.jpg" 
-                     alt="Floating Islands Level Design" 
-                     class="portfolio-image" 
-                     onclick="openFullscreen(this)"
-                     loading="lazy"
-                     onerror="this.src='https://via.placeholder.com/1200/667eea/ffffff?text=Floating+Islands'">
-                <div class="image-overlay">
-                    <span data-en="View Fullscreen" data-ru="На весь экран">View Fullscreen</span>
-                </div>
-            </div>
-            <div class="portfolio-caption">
-                <h3 data-en="Floating Islands" data-ru="Парящие острова">Floating Islands</h3>
-                <p data-en="Sky-high platforming challenge with wind mechanics and dynamic weather" 
-                   data-ru="Высокое платформенное испытание с ветровой механикой и динамической погодой">
-                    Sky-high platforming challenge with wind mechanics and dynamic weather
-                </p>
-                <div class="portfolio-tags">
-                    <span class="portfolio-tag" data-en="Fantasy" data-ru="Фэнтези">Fantasy</span>
-                    <span class="portfolio-tag" data-en="Platformer" data-ru="Платформер">Platformer</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Abandoned Asylum - Horror -->
-        <div class="portfolio-item" data-category="horror" style="--height: 380">
-            <div class="portfolio-image-container">
-                <img src="images/abandoned-asylum.jpg" 
-                     alt="Abandoned Asylum Level Design" 
-                     class="portfolio-image" 
-                     onclick="openFullscreen(this)"
-                     loading="lazy"
-                     onerror="this.src='https://via.placeholder.com/800/764ba2/ffffff?text=Abandoned+Asylum'">
-                <div class="image-overlay">
-                    <span data-en="View Fullscreen" data-ru="На весь экран">View Fullscreen</span>
-                </div>
-            </div>
-            <div class="portfolio-caption">
-                <h3 data-en="Abandoned Asylum" data-ru="Заброшенная психиатрическая больница">Abandoned Asylum</h3>
-                <p data-en="Horror-themed level with jump scares, atmospheric lighting, and psychological puzzles" 
-                   data-ru="Уровень в жанре хоррор с скримерами, атмосферным освещением и психологическими головоломками">
-                    Horror-themed level with jump scares, atmospheric lighting, and psychological puzzles
-                </p>
-                <div class="portfolio-tags">
-                    <span class="portfolio-tag" data-en="Horror" data-ru="Хоррор">Horror</span>
-                    <span class="portfolio-tag" data-en="Atmospheric" data-ru="Атмосферный">Atmospheric</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- ABOUT SECTION -->
         <section id="about" class="content-section">
@@ -285,18 +219,5 @@
     </footer>
 
     <script src="script.js"></script>
-
-<!-- Enhanced Fullscreen Modal -->
-<div id="imageModal" class="modal">
-    <span class="modal-close" onclick="closeFullscreen()">&times;</span>
-    <span class="modal-prev" onclick="prevImage()">&#10094;</span>
-    <span class="modal-next" onclick="nextImage()">&#10095;</span>
-    
-    <img class="modal-content" id="modalImage">
-    
-    <div id="modalCaption"></div>
-    <div class="modal-counter">1 / 6</div>
-</div>
-
 </body>
 </html>
