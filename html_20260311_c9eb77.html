@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingual Blog / Двуязычный блог</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ru">Русский</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1 data-en="Bilingual Blog" data-ru="Двуязычный блог">Bilingual Blog</h1>
+        <p data-en="Sharing thoughts in two languages" data-ru="Делюсь мыслями на двух языках">Sharing thoughts in two languages</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" data-en="Home" data-ru="Главная">Home</a>
+        <a href="#" data-en="About" data-ru="О блоге">About</a>
+        <a href="#" data-en="Contact" data-ru="Контакты">Contact</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Blog Post 1 -->
+        <article class="blog-post">
+            <h2 data-en="First Blog Post" data-ru="Первый пост">First Blog Post</h2>
+            <div class="post-meta">
+                <span data-en="Published on" data-ru="Опубликовано">Published on</span> 
+                <span>March 8, 2026</span>
+            </div>
+            <div class="post-content">
+                <p data-en="Welcome to my bilingual blog! This is the first post in both English and Russian. Here I'll share my thoughts, experiences, and knowledge in both languages."
+                   data-ru="Добро пожаловать в мой двуязычный блог! Это первый пост на английском и русском языках. Здесь я буду делиться своими мыслями, опытом и знаниями на обоих языках.">
+                    Welcome to my bilingual blog! This is the first post in both English and Russian. Here I'll share my thoughts, experiences, and knowledge in both languages.
+                </p>
+                <p data-en="You can switch between languages using the toggle button above. The entire site content will change accordingly."
+                   data-ru="Вы можете переключаться между языками, используя кнопку переключения выше. Все содержимое сайта будет соответственно меняться.">
+                    You can switch between languages using the toggle button above. The entire site content will change accordingly.
+                </p>
+            </div>
+        </article>
+
+        <!-- Blog Post 2 -->
+        <article class="blog-post">
+            <h2 data-en="Technology and Languages" data-ru="Технологии и языки">Technology and Languages</h2>
+            <div class="post-meta">
+                <span data-en="Published on" data-ru="Опубликовано">Published on</span> 
+                <span>March 7, 2026</span>
+            </div>
+            <div class="post-content">
+                <p data-en="Learning a new language is like learning to code - both open up new ways of thinking and expressing yourself. In this blog, we'll explore both worlds."
+                   data-ru="Изучение нового языка похоже на изучение программирования - оба открывают новые способы мышления и самовыражения. В этом блоге мы исследуем оба мира.">
+                    Learning a new language is like learning to code - both open up new ways of thinking and expressing yourself. In this blog, we'll explore both worlds.
+                </p>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <span data-en="Bilingual Blog" data-ru="Двуязычный блог">Bilingual Blog</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
